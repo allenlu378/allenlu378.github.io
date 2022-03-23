@@ -15,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
     --green-tint: rgba(100,255,218,0.1);
     --pink: #f57dff;
     --blue: #57cbff;
+    --navy-shadow: rgba(2, 12, 27, 0.7);
     --font-sans: "Calibre","Inter","San Francisco","SF Pro Text",-apple-system,system-ui,sans-serif;
     --font-mono: "SF Mono","Fira Code","Fira Mono","Roboto Mono",monospace;
     --fz-xxs: 12px;
@@ -41,9 +42,11 @@ const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     width: 100%;
-    
+    scroll-behavior: smooth;
   }
   body {
+    
+    overflow: hidden;
     margin: 0;
     width: 100%;
     min-height: 100%;
@@ -65,10 +68,14 @@ const GlobalStyle = createGlobalStyle`
   main {
     margin: 0 auto;
     min-height: 100vh;
+    overflow: hidden;
+
   }
   section {
     margin: 0 auto;
     padding: 150px 0;
+    overflow: hidden;
+
     
     @media (max-width: 1080px) {
       padding: 120px 0;

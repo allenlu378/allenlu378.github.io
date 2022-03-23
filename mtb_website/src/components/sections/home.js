@@ -4,10 +4,12 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import FadeIn from 'react-fade-in';
 
 const StyledHomeSection = styled.section`
+    overflow: hidden;
+
   ${({ theme }) => theme.mixins.flexCenter};
     flex-direction: column;
     align-items: flex-start;
-    min-height: 75vh;
+    min-height: 100vh;
     padding: 0px;
 }
   .big-heading{
@@ -48,9 +50,9 @@ const one = <h1>Hi, my name is</h1>;
         <span className="special"> Computer Science</span> at 
         <span className="special"> Carnegie Mellon University</span>
         . Currently, I am working at the Carnegie 
-        <a href="http://vdel.me.cmu.edu/" className="special"> Visual Design and Engineering Lab </a> 
+        <a href="http://vdel.me.cmu.edu/" className="special" target="_blank" rel="noopener noreferrer"> Visual Design and Engineering Lab </a> 
         and am an incoming Full Stack Software Development intern at 
-        <a href="https://zoom.us/" className="special"> Zoom</a>.
+        <a href="https://zoom.us/" className="special" target="_blank" rel="noopener noreferrer"> Zoom</a>.
       </p>
     </>
   );

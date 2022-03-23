@@ -20,6 +20,10 @@ const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow: hidden;
+`
+const StyledRoot = styled.div`
+  overflow: hidden;
 `
 
 const Layout = ({ children }) => {
@@ -35,7 +39,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <div id="root">
+      <StyledRoot id="root">
         <ThemeProvider theme={theme}>
           <GlobalStyle/>
           <StyledContent>
@@ -46,7 +50,7 @@ const Layout = ({ children }) => {
             <Footer/>
           </StyledContent>
         </ThemeProvider>
-      </div>
+      </StyledRoot>
       
     </>
   )

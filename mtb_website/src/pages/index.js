@@ -1,5 +1,5 @@
 import React from "react"
-import { Layout, Home, Contact } from "../components"
+import { Layout, Home, About, Contact } from "../components"
 import styled from "styled-components"
 import { GlobalStyle, theme } from '../styles';
 
@@ -8,6 +8,8 @@ const StyledMainContainer = styled.main`
     counter-reset: section;
     padding: 0vh 15vmax;
     align-items: center;
+    overflow: hidden;
+    
 `
 
 const IndexPage = () => {
@@ -15,6 +17,7 @@ const IndexPage = () => {
     <Layout>
       <StyledMainContainer className="fillHeight">
         <Home/>
+        <About/>
         <Contact/>
       </StyledMainContainer>
     </Layout>

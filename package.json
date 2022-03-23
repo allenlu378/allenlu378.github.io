@@ -2,6 +2,7 @@
   "dependencies": {
     "@bit/formidablelabs.react-animations.fade-in-down": "^1.0.0",
     "bootstrap": "^5.1.3",
+    "gatsby-transformer-remark": "^5.10.2",
     "navbar-react": "^1.0.4",
     "react-bootstrap": "^2.2.1",
     "react-fade-in": "^2.0.1",
