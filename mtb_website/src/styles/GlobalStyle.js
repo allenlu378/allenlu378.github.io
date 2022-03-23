@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     --fz-md: 16px;
     --fz-lg: 18px;
     --fz-xl: 20px;
-    --fz-xxl: 22px;
+    --fz-xxl: 70px;
     --fz-heading: 32px;
     --border-radius: 4px;
     --nav-height: 100px;
@@ -51,7 +51,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: var(--font-sans);
     overflow-x: hidden;
     @media (max-width: 768px) {
-      background: #121212;
+      background: var(--navy);
     }
   }
   .cls-1,.cls-2{

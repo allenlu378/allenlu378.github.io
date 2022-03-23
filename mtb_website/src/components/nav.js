@@ -1,11 +1,16 @@
 import * as React from "react"
-import PropTypes from "prop-types"
 import { Link } from "gatsby"
-import styled from "styled-components"
+import styled, {keyframes} from "styled-components"
 import Scrollspy from "react-scrollspy"
 import {links} from '../config.js'
 import resume from "../images/Allen Lu - Resume.pdf"
-
+import FadeInDown from "@bit/formidablelabs.react-animations.fade-in-down";
+const FadeInDownAnimation = keyframes`${FadeInDown}`;
+const FadeInDownDiv = styled.div`
+  animation: .75s ${FadeInDownAnimation};
+  display:flex;
+  
+`;
 const StyledNav = styled.div`
   
 display: flex;
@@ -39,7 +44,6 @@ const StyledLinks = styled.div`
   counter-reset: item 0;
   z-index: 12;
     @media (max-width: 1080px) {
-      background-color: red;
       position: absolute;
       color: white;
       margin-top: 32px;
@@ -57,7 +61,7 @@ const StyledLinks = styled.div`
     &:before {
       content: "";
       width: 63rem;
-      background-color: black;
+      background-color: var(--navy);
       margin-right: 24px;
     }
     li a::before {
@@ -69,12 +73,13 @@ const StyledLinks = styled.div`
       text-align: right;
     }
     li {
-      counter-increment: item;
+      counter-increment: item 1;
+      
       margin: 0 24px;
       font-size: 13px;
       opacity: 1;
       @media (max-width: 1080px) {
-        background-color: red;
+        // background-color: red;
         &:not(:first-child) {
           margin-top: 12px;
         }
@@ -89,6 +94,7 @@ const StyledLinks = styled.div`
       }
     }
     .item {
+      // transition-delay: counter(delay) ms;
       color: white;
       list-style-type: none;
       a:hover{
@@ -121,6 +127,9 @@ const StyledLinks = styled.div`
           background-color:var(--green-tint);
         }
       }
+      .fade-in{
+        transition-delay:400ms;
+      }
     }
 `
 const StyledButton = styled.div`
@@ -135,14 +144,22 @@ const navbar = () => {return (
         currentClassName="nav__item--active"
         className="inner"
       >
+      
         {links.map(({ url, name }, i) => (
+          <FadeInDownDiv>
                     <li key={i} className="item">
                       <Link to={url}>{name}</Link>
                     </li>
+                    </FadeInDownDiv>
                   ))}
-        <StyledButton>
-          <a className="resume-button" target="_blank" rel="noopener noreferrer" href={resume}>Resume</a>
-        </StyledButton>
+          <FadeInDownDiv className = "fade-in">
+            <StyledButton>
+              <a className="resume-button" target="_blank" rel="noopener noreferrer" href={resume}>Resume</a>
+            </StyledButton>
+          </FadeInDownDiv>
+          
+      
+        
         
           
       </Scrollspy>

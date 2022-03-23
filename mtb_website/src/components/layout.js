@@ -9,10 +9,12 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import {Nav} from "../components"
+import { Nav, Email, Social, Footer } from "../components"
 import "./layout.css"
-import { GlobalStyle } from "../styles"
-import styled from "styled-components"
+import styled, { ThemeProvider } from 'styled-components';
+import { GlobalStyle, theme } from '../styles';
+
+
 
 const StyledContent = styled.div`
   display: flex;
@@ -34,29 +36,18 @@ const Layout = ({ children }) => {
   return (
     <>
       <div id="root">
-        <GlobalStyle/>
-        <StyledContent/>
-        <Nav/>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle/>
+          <StyledContent>
+            <Nav/>
+            <Social/>
+            <Email/>
+            <div>{children}</div>
+            <Footer/>
+          </StyledContent>
+        </ThemeProvider>
       </div>
       
-      {/* <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `2rem`,
-          }}
-        >
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div> */}
     </>
   )
 }
