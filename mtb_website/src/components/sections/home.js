@@ -9,11 +9,32 @@ const StyledHomeSection = styled.section`
   ${({ theme }) => theme.mixins.flexCenter};
     flex-direction: column;
     align-items: flex-start;
-    min-height: 100vh;
+    min-height: 85vh;
     padding: 0px;
 }
   .big-heading{
       font-size: var(--fz-xxl)
+  }
+  a{
+    display: inline-block;
+    position: relative;
+    color: var(--green);
+  }
+  a:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--green);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  a:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
   }
   h1 {
     margin: 0 0 30px 4px;
@@ -40,7 +61,7 @@ const StyledHomeSection = styled.section`
   }
 `;
 const Home = () => {
-const one = <h1>Hi, my name is</h1>;
+  const one = <h1>Hi, my name is</h1>;
   const two = <h2 className="big-heading">Allen Lu.</h2>;
   const three = <h3 className="big-heading">I am a software developer.</h3>;
   const four = (
@@ -49,9 +70,9 @@ const one = <h1>Hi, my name is</h1>;
         I am a second-year student majoring in 
         <span className="special"> Computer Science</span> at 
         <span className="special"> Carnegie Mellon University</span>
-        . Currently, I am working at the Carnegie 
-        <a href="http://vdel.me.cmu.edu/" className="special" target="_blank" rel="noopener noreferrer"> Visual Design and Engineering Lab </a> 
-        and am an incoming Full Stack Software Development intern at 
+        . Currently, I am working at the Carnegie  
+        {''} <a href="http://vdel.me.cmu.edu/" className="special" target="_blank" rel="noopener noreferrer"> Visual Design and Engineering Lab </a> 
+        {''} and am an incoming Full Stack Software Development intern at {''}
         <a href="https://zoom.us/" className="special" target="_blank" rel="noopener noreferrer"> Zoom</a>.
       </p>
     </>

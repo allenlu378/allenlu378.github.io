@@ -6,7 +6,7 @@ const StyledContactSection = styled.section`
   ${({ theme }) => theme.mixins.flexCenter};
     flex-direction: column;
     align-items: center;
-    min-height: 25vh;
+    min-height: 50vh;
     padding: 0px;
     counter-increment: section 1;
 }
@@ -40,8 +40,27 @@ const StyledContactSection = styled.section`
     color: var(--green);
   }
   a{
+    display: inline-block;
+    position: relative;
+    color: var(--green);
     pointer-events: auto !important;
     user-select: auto !important;
+  }
+  a:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background-color: var(--green);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  a:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
   }
 `;
 const Contact = () => {

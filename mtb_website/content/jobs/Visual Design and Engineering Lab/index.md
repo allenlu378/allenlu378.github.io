@@ -1,7 +1,12 @@
-date          | title  						               | company | location     | range             | url
-------------- | ---------------------------------------|---------|--------------|-------------------|-------
-05/23/2022    | Researcher | Visual Design and Engineering Lab    | Pittsburgh, PA | March - May 2022 | http://vdel.me.cmu.edu/
+---
+date: "2022-03-23"
+title: "Researcher"
+company: "Visual Design and Engineering Lab"
+location: "Pittsburgh, PA"
+range: "March - May 2022"
+url: "http://vdel.me.cmu.edu/"
+---
 
+* YERRR
 
-*YERRR
  

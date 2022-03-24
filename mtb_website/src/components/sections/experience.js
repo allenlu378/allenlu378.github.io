@@ -1,233 +1,208 @@
-import React, { useState } from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import { CSSTransition } from "react-transition-group"
-import styled from "styled-components"
+import React, { useState, useEffect, useRef } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import { CSSTransition } from 'react-transition-group';
+import styled from 'styled-components';
+// import { srConfig } from '@config';
+// import { KEY_CODES } from '@utils';
+// import sr from '@utils/sr';
+// import { usePrefersReducedMotion } from '@hooks';
 
 const StyledJobsSection = styled.section`
-  // background-color: white;
+    h2::before{
+        content: "0" counter(section) ".";
+    }
+    h2{
+        color: var(--green);
+        font-family: var(--font-mono);
+        font-weight: 400;
+    }
+    .numbered-heading::after{
+        content: "";
+        display: block;
+        position: relative;
+        top: -15px;
+        width: 300px;
+        height: 1px;
+        margin-left: 40vh;
+        background-color: var(--slate);
+    }
+    min-height: 50vh;
+    max-width: 900px;
+    counter-increment: section 1;
   .inner {
     display: flex;
-    @media (max-width: 768px) {
-      color: white;
-      flex-direction: column;
+    @media (max-width: 600px) {
+      display: block;
     }
+    @media (min-width: 700px) {
+      min-height: 340px;
+    }
+    .numbered-heading{
+        align-items: center;
+    }
+    
   }
-`
+`;
 
-const Column = styled.div`
-  flex: 50%;
-  .header {
-    font-family: var(--font-playfair);
-    font-size: 32px;
-    float: right;
-    margin-right: 64px;
-    @media (max-width: 1080px) {
-      margin-right: 32px;
-    }
-    @media (max-width: 768px) {
-      margin-right: 64px;
-      font-size: 24px;
-    }
-  }
-  .left {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    margin-top: 64px;
-    align-items: flex-end;
-    width: 100%;
-  }
-`
-
-const StyledTabList = styled.ul`
-  margin: 0 64px 0 0;
+const StyledTabList = styled.div`
   position: relative;
-  padding: 0 40px 0 0;
-  width: max-content;
-  float: right;
-  // background-color: blue;
   z-index: 3;
-  @media (max-width: 1080px) {
-    margin: 0 32px 0 0;
-  }
-  @media (max-width: 768px) {
-    margin-right: 64px;
-  }
+  width: max-content;
+  padding: 0;
+  margin: 0;
   list-style: none;
-`
+  border: none !important;
+  @media (max-width: 600px) {
+    display: flex;
+    overflow-x: auto;
+    width: calc(100% + 100px);
+    padding-left: 50px;
+    margin-left: -50px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 480px) {
+    width: calc(100% + 50px);
+    padding-left: 25px;
+    margin-left: -25px;
+  }
+  li {
+    &:first-of-type {
 
-const StyledTabButton = styled.div`
+      @media (max-width: 600px) {
+        margin-left: 50px;
+      }
+      @media (max-width: 480px) {
+        margin-left: 25px;
+      }
+    }
+    &:last-of-type {
+      @media (max-width: 600px) {
+        padding-right: 50px;
+      }
+      @media (max-width: 480px) {
+        padding-right: 25px;
+      }
+    }
+  }
+`;
+
+const StyledTabButton = styled.button`
+  ${({ theme }) => theme.mixins.link};
   display: flex;
-  padding: 0 40px 0 0;
   align-items: center;
-  cursor: pointer;
   width: 100%;
   height: var(--tab-height);
-  border-right: 2px solid rgba(0, 0, 0, 0.05);
-  // background-color: blue;
-  @media (max-width: 768px) {
-    border-right: 2px solid rgba(255, 255, 255, 0.3);
-  }
-  justify-content: space-between;
+  padding: 0 20px 2px;
+  border-left: 2px solid var(--lightest-navy);
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+  background-color: transparent;
+  color: ${({ isActive }) => (isActive ? 'var(--green)' : 'var(--slate)')};
+  font-family: var(--font-mono);
   font-size: var(--fz-xs);
+  text-align: left;
   white-space: nowrap;
-  span {
-    margin-right: 20px;
+  @media (max-width: 768px) {
+    padding: 0 15px 2px;
+  }
+  @media (max-width: 600px) {
+    ${({ theme }) => theme.mixins.flexCenter};
+    min-width: 120px;
+    padding: 0 15px;
+    border-left: 0;
+    border-bottom: 2px solid var(--lightest-navy);
+    text-align: center;
   }
   &:hover,
   &:focus {
-    h2 {
-      opacity: 1;
-    }
-    h5 {
-      opacity: 0.9;
-    }
+    background-color: var(--light-navy);
   }
-  h2 {
-    font-size: 16px;
-    font-weight: 400;
-    opacity: ${({ isActive }) => (isActive ? "1" : ".75")};
-  }
-  h5 {
-    margin-right: 32px;
-    font-weight: 300;
-    opacity: ${({ isActive }) => (isActive ? ".9" : ".75")};
-    font-size: 13px;
-    // background: red;
-  }
-  @media (max-width: 768px) {
-    h2 {
-      font-size: 12px;
-    }
-    h5 {
-      font-size: 10px;
-    }
-  }
-`
+`;
+
 const StyledHighlight = styled.div`
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   z-index: 10;
   width: 2px;
-  margin-right: -2px;
   height: var(--tab-height);
-  border-radius: 4px;
-  background: black;
-  @media (max-width: 768px) {
-    background: white;
-    opacity: 0.8;
+  border-radius: var(--border-radius);
+  background: var(--green);
+  transform: translateY(calc(${({ activeTabId }) => activeTabId} * var(--tab-height)));
+  transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition-delay: 0.1s;
+  @media (max-width: 600px) {
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    max-width: var(--tab-width);
+    height: 2px;
+    margin-left: 50px;
+    transform: translateX(calc(${({ activeTabId }) => activeTabId} * var(--tab-width)));
   }
-  transform: translateY(
-    calc(${({ activeTabId }) => activeTabId} * var(--tab-height))
-  );
-  transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 0.5);
-  transition-delay: 0.05s;
-`
+  @media (max-width: 480px) {
+    margin-left: 25px;
+  }
+`;
 
-const StyledTabContent = styled.div`
-  // background-color: red;
-  padding-top: 10px;
-  margin-left: 64px;
-  color: white;
-  @media (max-width: 1080px) {
-    margin-left: 32px;
+const StyledTabPanels = styled.div`
+  position: relative;
+  width: 100%;
+  margin-left: 20px;
+  @media (max-width: 600px) {
+    margin-left: 0;
   }
-  h1 {
-    font-weight: 300;
-    font-size: 24px;
-    margin-bottom: 8px;
-    margin-right: 20px;
-  }
-  h2 {
-    font-weight: 600;
-    font-size: 32px;
-    margin-bottom: 4px;
-  }
-  h4 {
-    font-weight: 300;
-    font-size: var(--fz-xs);
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-  }
-  .line {
-    border-bottom: 1px solid white;
-    width: 100%;
-    content: " ";
-    margin-left: 32px;
-  }
-  a {
-    &:hover {
-      border-bottom: 2px solid white;
-    }
-  }
-  .container {
-    // background-color: red;
-    width: 100%;
-    display: flex;
-    align-items: center;
-  }
+`;
+
+const StyledTabPanel = styled.div`
+  width: 100%;
+  height: auto;
+  padding: 10px 5px;
   ul {
-    width: 500px;
-    list-style: none;
-    font-size: 14px;
-    margin-top: 14px;
-    padding: 0 0 0 24px;
-    @media (max-width: 1300px) {
-      width: 400px;
-    }
-    @media (max-width: 1080px) {
-      margin-left: 32px;
-      width: 300px;
-      padding: 0;
-    }
-    @media (max-width: 768px) {
-      margin-left: 32px;
-      max-width: 400px;
-      padding: 0;
-    }
-    @media (max-width: 400px) {
-      margin-left: 32px;
-      width: 200px;
-      padding: 0;
-    }
-    li {
-      position: relative;
-      line-height: 160%;
-      padding-left: 24px;
-      margin-bottom: 30px;
-      &:before {
-        content: ">";
-        position: absolute;
-        left: 0;
-        color: white;
-      }
-    }
+    ${({ theme }) => theme.mixins.fancyList};
   }
-  @media (max-width: 768px) {
-    margin-left: 32px;
-    h1 {
-      font-size: 20px;
+  h3 {
+    margin-bottom: 2px;
+    font-size: var(--fz-xxl);
+    font-weight: 500;
+    line-height: 1.3;
+    .company {
+      color: var(--green);
     }
-    h2 {
-      font-size: 24px;
-    }
-    h4 {
-      font-size: 10px;
-    }
-    h5 {
-      margin-left: 12px;
-    }
-    ul {
-      padding: 0;
-      li {
-        font-size: 12px;
-        margin-bottom: 16px;
-      }
-    }
+    font-size: var(--fz-lg);
   }
-`
+  .company{
+    display: inline-block;
+    position: relative;
+    color: var(--green);
+  }
+  .company:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--green);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  .company:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .at{
+      color: var(--green);
+  }
+  .range {
+    margin-bottom: 25px;
+    color: var(--light-slate);
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs);
+  }
+`;
 
 const Jobs = () => {
   const data = useStaticQuery(graphql`
@@ -250,74 +225,75 @@ const Jobs = () => {
         }
       }
     }
-  `)
+  `);
 
-  const jobsData = data.jobs.edges
-  const [activeTabId, setActiveTabId] = useState(0)
+  const jobsData = data.jobs.edges;
+
+  const [activeTabId, setActiveTabId] = useState(0);
+  
+
 
   return (
     <StyledJobsSection id="jobs">
+      <h2 className="numbered-heading"> Where I’ve Worked</h2>
+
       <div className="inner">
-        <Column>
-          <div className="left">
-            <h2 className="header">Where I’ve Worked</h2>
-            <StyledTabList>
-              {jobsData.map(({ node }, i) => {
-                const { company, season } = node.frontmatter
-                return (
-                  <li key={i}>
-                    <StyledTabButton
-                      isActive={activeTabId === i}
-                      onClick={() => setActiveTabId(i)}
-                    >
-                      <h5>{season}</h5>
+        <StyledTabList role="tablist" aria-label="Job tabs">
+          {jobsData &&
+            jobsData.map(({ node }, i) => {
+              const { company } = node.frontmatter;
+              return (
+                <StyledTabButton
+                  key={i}
+                  isActive={activeTabId === i}
+                  onClick={() => setActiveTabId(i)}
+                  id={`tab-${i}`}
+                  role="tab"
+                  tabIndex={activeTabId === i ? '0' : '-1'}
+                  aria-selected={activeTabId === i ? true : false}
+                  aria-controls={`panel-${i}`}>
+                  <span>{company}</span>
+                </StyledTabButton>
+              );
+            })}
+          <StyledHighlight activeTabId={activeTabId} />
+        </StyledTabList>
 
-                      <h2>{company}</h2>
-                    </StyledTabButton>
-                  </li>
-                )
-              })}
-              <StyledHighlight activeTabId={activeTabId} />
-            </StyledTabList>
-          </div>
-        </Column>
-        <Column>
-          {jobsData.map(({ node }, i) => {
-            const { frontmatter, html } = node
-            const { title, url, company, range } = frontmatter
+        <StyledTabPanels>
+          {jobsData &&
+            jobsData.map(({ node }, i) => {
+              const { frontmatter, html } = node;
+              const { title, url, company, range } = frontmatter;
 
-            return (
-              <CSSTransition
-                key={i}
-                in={activeTabId === i}
-                classNames="fade"
-                timeout={250}
-              >
-                <StyledTabContent id={`panel-${i}`} hidden={activeTabId !== i}>
-                  <h1>
-                    <div>
-                      <h2> {title}</h2>
-                    </div>
+              return (
+                <CSSTransition key={i} in={activeTabId === i} timeout={250} classNames="fade">
+                  <StyledTabPanel
+                    id={`panel-${i}`}
+                    role="tabpanel"
+                    tabIndex={activeTabId === i ? '0' : '-1'}
+                    aria-labelledby={`tab-${i}`}
+                    aria-hidden={activeTabId !== i}
+                    hidden={activeTabId !== i}>
+                    <h3>
+                      <span>{title}</span><span className="at">&nbsp;@&nbsp;</span>
+                      <span className="company">
+                        <a href={url} className="inline-link">
+                          {company}
+                        </a>
+                      </span>
+                    </h3>
 
-                    <a href={url} rel="noopener noreferrer" target="_blank">
-                      &#64; {company}
-                    </a>
-                  </h1>
+                    <p className="range">{range}</p>
 
-                  <div className="container">
-                    <h4>{range}</h4>
-                    <div className="line"></div>
-                  </div>
-
-                  <div dangerouslySetInnerHTML={{ __html: html }} />
-                </StyledTabContent>
-              </CSSTransition>
-            )
-          })}
-        </Column>
+                    <div dangerouslySetInnerHTML={{ __html: html }} />
+                  </StyledTabPanel>
+                </CSSTransition>
+              );
+            })}
+        </StyledTabPanels>
       </div>
     </StyledJobsSection>
-  )
-}
+  );
+};
 
-export default Jobs
+export default Jobs;

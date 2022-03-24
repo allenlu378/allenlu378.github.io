@@ -10,6 +10,7 @@ const StyledAboutSection = styled.section`
       content: "0" counter(section) ".";
   }
   max-width: 900px;
+  min-height: 85vh;
   counter-increment: section 1;
   .inner {
     display: grid;

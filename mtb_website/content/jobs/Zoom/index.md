@@ -1,7 +1,11 @@
-date          | title  						               | company | location     | range             | url
-------------- | ---------------------------------------|---------|--------------|-------------------|-------
-05/23/2022    | Full Stack Software Development Intern | Zoom    | San Jose, CA | May - August 2022 | zoom.us
+---
+date: "2022-05-31"
+title: "Full Stack Software Development Intern"
+company: "Zoom"
+location: "San Jose, CA"
+range: "May - August 2022"
+url: "zoom.us"
+---
 
-
-*ZOOOOOMIE
+* ZOOOOOMIE
  

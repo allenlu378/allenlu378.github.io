@@ -1,5 +1,5 @@
 import React from "react"
-import { Layout, Home, About, Contact } from "../components"
+import { Layout, Home, About, Jobs, Contact } from "../components"
 import styled from "styled-components"
 import { GlobalStyle, theme } from '../styles';
 
@@ -18,6 +18,7 @@ const IndexPage = () => {
       <StyledMainContainer className="fillHeight">
         <Home/>
         <About/>
+        <Jobs/>
         <Contact/>
       </StyledMainContainer>
     </Layout>
