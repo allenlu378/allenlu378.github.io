@@ -16,7 +16,7 @@ pointer-events: auto !important;
 
 const Footer = () => (
     <StyledFooter>
-        <a href = "https://github.com/allenlu378">
+        <a href = "https://github.com/allenlu378" target="_blank" rel="noopener noreferrer" >
             <div>Built by Allen Lu</div>
         </a>
     </StyledFooter>
