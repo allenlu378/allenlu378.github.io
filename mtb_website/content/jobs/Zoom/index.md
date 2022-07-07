@@ -1,11 +1,11 @@
 ---
 date: "2022-05-31"
-title: "Full Stack Software Development Intern"
+title: "Software Engineer Intern"
 company: "Zoom"
 location: "San Jose, CA"
 range: "May - August 2022"
 url: "zoom.us"
 ---
 
-* ZOOOOOMIE
+* Starting backend work involving real‑time language translation and web development with Java and Go on Web Engineering team.
  

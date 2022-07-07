@@ -116,10 +116,10 @@ const StyledPic = styled.div`
 `;
 
 const About = () => {
-    const skills = ['JavaScript', 'Python', 'React', 'Node.js', 'Java', 'C'];
+    const skills = ['Python', 'Java', 'Javascript', 'C', 'Node.js', 'React'];
     return (
-        <StyledAboutSection id="about">
-          <h2 className="numbered-heading"> About Me</h2>
+        <StyledAboutSection >
+          <h2 className="numbered-heading" id="about" style={{paddingTop: "125px"}}> About Me</h2>
     
           <div className="inner">
             <StyledText>
@@ -130,7 +130,7 @@ const About = () => {
     
                 <p>
                   Other than software development, some of my hobbies are playing and watching sports, 
-                  gaming, eating, and exploring!
+                  gaming, eating, and bouldering!
                 </p>
     
     

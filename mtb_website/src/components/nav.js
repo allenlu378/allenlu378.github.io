@@ -24,7 +24,7 @@ const StyledNav = styled.div`
   padding: 0px 50px;
   width: 100%;
   height: var(--nav-height);
-  background-color: var(--green)
+  background-color: var(--navy)
   backdrop-filter: blur(10px);
   transition: var(--transition);
   filter: none !important;
@@ -140,7 +140,7 @@ const navbar = () => {return (
   <StyledNav>
     <StyledLinks>
       <Scrollspy 
-        items={["about", "jobs", "projects", "contact"]}
+        items={["home", "about", "jobs", "contact"]}
         currentClassName="nav__item--active"
         className="inner"
       >

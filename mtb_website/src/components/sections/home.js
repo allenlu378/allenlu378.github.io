@@ -67,13 +67,14 @@ const Home = () => {
   const four = (
     <>
       <p>
-        I am a second-year student majoring in 
+        I am a third-year student majoring in 
         <span className="special"> Computer Science</span> at 
         <span className="special"> Carnegie Mellon University</span>
-        . Currently, I am working at the Carnegie  
-        {''} <a href="http://vdel.me.cmu.edu/" className="special" target="_blank" rel="noopener noreferrer"> Visual Design and Engineering Lab </a> 
-        {''} and am an incoming Full Stack Software Development intern at {''}
-        <a href="https://zoom.us/" className="special" target="_blank" rel="noopener noreferrer"> Zoom</a>.
+        . Currently, I am currently a Software Engineer Intern at {''}
+        {''} <a href="https://zoom.us/" className="special" target="_blank" rel="noopener noreferrer"> Zoom </a> {''}
+        and am also working at the Carnegie  
+        {''} <a href="http://vdel.me.cmu.edu/" className="special" target="_blank" rel="noopener noreferrer"> Visual Design and Engineering Lab </a>. 
+    
       </p>
     </>
   );
@@ -82,7 +83,7 @@ const Home = () => {
   const items = [one, two, three, four];
 
   return (
-    <StyledHomeSection>
+    <StyledHomeSection id="home">
       
         <TransitionGroup component={null}>
             <FadeIn transitionDuration="750" delay="250">

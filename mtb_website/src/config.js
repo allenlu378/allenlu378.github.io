@@ -15,16 +15,16 @@ module.exports = {
   
     links: [
       {
+        name: "Home",
+        url: "/#home",
+      },
+      {
         name: "About",
         url: "/#about",
       },
       {
         name: "Experience",
         url: "/#jobs",
-      },
-      {
-        name: "Projects",
-        url: "/#projects",
       },
       {
         name: "Contact",

@@ -6,7 +6,7 @@ const StyledContactSection = styled.section`
   ${({ theme }) => theme.mixins.flexCenter};
     flex-direction: column;
     align-items: center;
-    min-height: 50vh;
+    min-height: 85vh;
     padding: 0px;
     counter-increment: section 1;
 }

@@ -1,6 +1,6 @@
 ---
 date: "2019-06-02"
-title: "Software Developer - Summer Research Program"
+title: "Software Engineer Intern"
 company: "Monmouth University"
 location: "West Long Branch, NJ"
 range: "June - August 2019"

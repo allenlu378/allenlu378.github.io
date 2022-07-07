@@ -234,8 +234,8 @@ const Jobs = () => {
 
 
   return (
-    <StyledJobsSection id="jobs">
-      <h2 className="numbered-heading"> Where I’ve Worked</h2>
+    <StyledJobsSection style={{paddingBottom: "350px"}}>
+      <h2 className="numbered-heading" id="jobs" style={{paddingTop: "125px"}}> Where I’ve Worked</h2>
 
       <div className="inner">
         <StyledTabList role="tablist" aria-label="Job tabs">
