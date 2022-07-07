@@ -1,19 +1,17 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
-import styled, {keyframes} from "styled-components"
+import styled, { keyframes } from "styled-components"
 import Scrollspy from "react-scrollspy"
-import {links} from '../config.js'
+import { links } from "../config.js"
 import resume from "../images/Allen Lu - Resume.pdf"
-import FadeInDown from "@bit/formidablelabs.react-animations.fade-in-down";
-const FadeInDownAnimation = keyframes`${FadeInDown}`;
+import FadeInDown from "@bit/formidablelabs.react-animations.fade-in-down"
+const FadeInDownAnimation = keyframes`${FadeInDown}`
 const FadeInDownDiv = styled.div`
   animation: 1s ${FadeInDownAnimation};
-  display:flex;
-  
-`;
+  display: flex;
+`
 const StyledSideElement = styled.div`
- 
   position: fixed;
   bottom: 0;
   left: ${props => (props.orientation === "left" ? "40px" : "auto")};
@@ -23,11 +21,8 @@ const StyledSideElement = styled.div`
 
 const Sidebar = ({ children, orientation }) => {
   return (
-    <StyledSideElement orientation={orientation}>
-      {children}
-    </StyledSideElement>
+    <StyledSideElement orientation={orientation}>{children}</StyledSideElement>
   )
 }
 
 export default Sidebar
-

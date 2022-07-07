@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { socialMedia } from "../config.js"
 import Sidebar from "./sidebar"
 import { Icon } from "../components/icons"
-import FadeIn from 'react-fade-in';
+import FadeIn from "react-fade-in"
 
 const StyledSocialList = styled.ul`
   display: flex;
@@ -34,28 +34,32 @@ const StyledSocialList = styled.ul`
         width: 20px;
         height: 20px;
       }
-    opactiy: 1;
-    :hover{
+      opactiy: 1;
+      :hover {
         color: var(--green);
-    }
-      
+      }
     }
   }
 `
 
 const Social = () => (
   <Sidebar orientation="left">
-    <FadeIn transitionDuration="500" delay="500" >
-        <StyledSocialList>
+    <FadeIn transitionDuration="500" delay="500">
+      <StyledSocialList>
         {socialMedia &&
-            socialMedia.map(({ url, name }, i) => (
+          socialMedia.map(({ url, name }, i) => (
             <li key={i}>
-                <a href={url} aria-label={name} target="_blank" rel="noopener noreferrer">
+              <a
+                href={url}
+                aria-label={name}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Icon name={name} />
-                </a>
+              </a>
             </li>
-            ))}
-        </StyledSocialList>
+          ))}
+      </StyledSocialList>
     </FadeIn>
   </Sidebar>
 )

@@ -1,13 +1,12 @@
 import React from "react"
-import styled, {keyframes} from "styled-components"
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import FadeIn from 'react-fade-in';
-import { StaticImage } from 'gatsby-plugin-image';
+import styled, { keyframes } from "styled-components"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
+import FadeIn from "react-fade-in"
+import { StaticImage } from "gatsby-plugin-image"
 
-
-const StyledAboutSection = styled.section`  
-  h2::before{
-      content: "0" counter(section) ".";
+const StyledAboutSection = styled.section`
+  h2::before {
+    content: "0" counter(section) ".";
   }
   max-width: 900px;
   min-height: 85vh;
@@ -20,12 +19,12 @@ const StyledAboutSection = styled.section`
       display: block;
     }
   }
-  h2{
+  h2 {
     font-family: var(--font-mono);
     color: var(--green);
     font-weight: 400;
   }
-`;
+`
 
 const StyledText = styled.div`
   ul.skills-list {
@@ -43,18 +42,17 @@ const StyledText = styled.div`
       font-family: var(--font-mono);
       font-size: var(--fz-xs);
       &:before {
-        content: '▹';
+        content: "▹";
         position: absolute;
         left: 0;
         top: 6px;
         color: var(--green);
         font-size: var(--fz-sm);
         line-height: 12px;
-
       }
     }
   }
-`;
+`
 
 const StyledPic = styled.div`
   position: relative;
@@ -92,7 +90,7 @@ const StyledPic = styled.div`
     }
     &:before,
     &:after {
-      content: '';
+      content: "";
       display: block;
       position: absolute;
       width: 100%;
@@ -113,49 +111,56 @@ const StyledPic = styled.div`
       z-index: -1;
     }
   }
-`;
+`
 
 const About = () => {
-    const skills = ['Python', 'Java', 'Javascript', 'C', 'Node.js', 'React'];
-    return (
-        <StyledAboutSection >
-          <h2 className="numbered-heading" id="about" style={{paddingTop: "125px"}}> About Me</h2>
-    
-          <div className="inner">
-            <StyledText>
-              <div>
-                <p>
-                  Hello! Some crap about me 
-                </p>
-    
-                <p>
-                  Other than software development, some of my hobbies are playing and watching sports, 
-                  gaming, eating, and bouldering!
-                </p>
-    
-    
-                <p>Here are a few languages that I am proficient in and have used recently:</p>
-              </div>
-    
-              <ul className="skills-list">
-                {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
-              </ul>
-            </StyledText>
-    
-            <StyledPic>
-              <div className="wrapper">
-                <StaticImage
-                  className="img"
-                  src="../../images/aboutpic.jpeg"
-                  width={500}
-                  quality={95}
-                  formats={['AUTO', 'WEBP', 'AVIF']}
-                  alt="Headshot"
-                />
-              </div>
-            </StyledPic>
+  const skills = ["Python", "Java", "Javascript", "C", "Node.js", "React"]
+  return (
+    <StyledAboutSection>
+      <h2
+        className="numbered-heading"
+        id="about"
+        style={{ paddingTop: "125px" }}
+      >
+        {" "}
+        About Me
+      </h2>
+
+      <div className="inner">
+        <StyledText>
+          <div>
+            <p>Hello! Some crap about me</p>
+
+            <p>
+              Other than software development, some of my hobbies are playing
+              and watching sports, gaming, eating, and bouldering!
+            </p>
+
+            <p>
+              Here are a few languages that I am proficient in and have used
+              recently:
+            </p>
           </div>
-        </StyledAboutSection>
-      );
-    }
-    export default About
+
+          <ul className="skills-list">
+            {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
+          </ul>
+        </StyledText>
+
+        <StyledPic>
+          <div className="wrapper">
+            <StaticImage
+              className="img"
+              src="../../images/aboutpic.jpeg"
+              width={500}
+              quality={95}
+              formats={["AUTO", "WEBP", "AVIF"]}
+              alt="Headshot"
+            />
+          </div>
+        </StyledPic>
+      </div>
+    </StyledAboutSection>
+  )
+}
+export default About

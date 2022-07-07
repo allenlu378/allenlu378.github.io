@@ -1,34 +1,34 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import { CSSTransition } from 'react-transition-group';
-import styled from 'styled-components';
+import React, { useState, useEffect, useRef } from "react"
+import { useStaticQuery, graphql } from "gatsby"
+import { CSSTransition } from "react-transition-group"
+import styled from "styled-components"
 // import { srConfig } from '@config';
 // import { KEY_CODES } from '@utils';
 // import sr from '@utils/sr';
 // import { usePrefersReducedMotion } from '@hooks';
 
 const StyledJobsSection = styled.section`
-    h2::before{
-        content: "0" counter(section) ".";
-    }
-    h2{
-        color: var(--green);
-        font-family: var(--font-mono);
-        font-weight: 400;
-    }
-    .numbered-heading::after{
-        content: "";
-        display: block;
-        position: relative;
-        top: -15px;
-        width: 300px;
-        height: 1px;
-        margin-left: 40vh;
-        background-color: var(--slate);
-    }
-    min-height: 50vh;
-    max-width: 900px;
-    counter-increment: section 1;
+  h2::before {
+    content: "0" counter(section) ".";
+  }
+  h2 {
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-weight: 400;
+  }
+  .numbered-heading::after {
+    content: "";
+    display: block;
+    position: relative;
+    top: -15px;
+    width: 300px;
+    height: 1px;
+    margin-left: 40vh;
+    background-color: var(--slate);
+  }
+  min-height: 50vh;
+  max-width: 900px;
+  counter-increment: section 1;
   .inner {
     display: flex;
     @media (max-width: 600px) {
@@ -37,12 +37,11 @@ const StyledJobsSection = styled.section`
     @media (min-width: 700px) {
       min-height: 340px;
     }
-    .numbered-heading{
-        align-items: center;
+    .numbered-heading {
+      align-items: center;
     }
-    
   }
-`;
+`
 
 const StyledTabList = styled.div`
   position: relative;
@@ -67,7 +66,6 @@ const StyledTabList = styled.div`
   }
   li {
     &:first-of-type {
-
       @media (max-width: 600px) {
         margin-left: 50px;
       }
@@ -84,7 +82,7 @@ const StyledTabList = styled.div`
       }
     }
   }
-`;
+`
 
 const StyledTabButton = styled.button`
   ${({ theme }) => theme.mixins.link};
@@ -98,7 +96,7 @@ const StyledTabButton = styled.button`
   border-top: 0px;
   border-bottom: 0px;
   background-color: transparent;
-  color: ${({ isActive }) => (isActive ? 'var(--green)' : 'var(--slate)')};
+  color: ${({ isActive }) => (isActive ? "var(--green)" : "var(--slate)")};
   font-family: var(--font-mono);
   font-size: var(--fz-xs);
   text-align: left;
@@ -118,7 +116,7 @@ const StyledTabButton = styled.button`
   &:focus {
     background-color: var(--light-navy);
   }
-`;
+`
 
 const StyledHighlight = styled.div`
   position: absolute;
@@ -129,7 +127,9 @@ const StyledHighlight = styled.div`
   height: var(--tab-height);
   border-radius: var(--border-radius);
   background: var(--green);
-  transform: translateY(calc(${({ activeTabId }) => activeTabId} * var(--tab-height)));
+  transform: translateY(
+    calc(${({ activeTabId }) => activeTabId} * var(--tab-height))
+  );
   transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition-delay: 0.1s;
   @media (max-width: 600px) {
@@ -139,12 +139,14 @@ const StyledHighlight = styled.div`
     max-width: var(--tab-width);
     height: 2px;
     margin-left: 50px;
-    transform: translateX(calc(${({ activeTabId }) => activeTabId} * var(--tab-width)));
+    transform: translateX(
+      calc(${({ activeTabId }) => activeTabId} * var(--tab-width))
+    );
   }
   @media (max-width: 480px) {
     margin-left: 25px;
   }
-`;
+`
 
 const StyledTabPanels = styled.div`
   position: relative;
@@ -153,7 +155,7 @@ const StyledTabPanels = styled.div`
   @media (max-width: 600px) {
     margin-left: 0;
   }
-`;
+`
 
 const StyledTabPanel = styled.div`
   width: 100%;
@@ -172,13 +174,13 @@ const StyledTabPanel = styled.div`
     }
     font-size: var(--fz-lg);
   }
-  .company{
+  .company {
     display: inline-block;
     position: relative;
     color: var(--green);
   }
   .company:after {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     transform: scaleX(0);
@@ -193,8 +195,8 @@ const StyledTabPanel = styled.div`
     transform: scaleX(1);
     transform-origin: bottom left;
   }
-  .at{
-      color: var(--green);
+  .at {
+    color: var(--green);
   }
   .range {
     margin-bottom: 25px;
@@ -202,7 +204,7 @@ const StyledTabPanel = styled.div`
     font-family: var(--font-mono);
     font-size: var(--fz-xs);
   }
-`;
+`
 
 const Jobs = () => {
   const data = useStaticQuery(graphql`
@@ -225,23 +227,28 @@ const Jobs = () => {
         }
       }
     }
-  `);
+  `)
 
-  const jobsData = data.jobs.edges;
+  const jobsData = data.jobs.edges
 
-  const [activeTabId, setActiveTabId] = useState(0);
-  
-
+  const [activeTabId, setActiveTabId] = useState(0)
 
   return (
-    <StyledJobsSection style={{paddingBottom: "350px"}}>
-      <h2 className="numbered-heading" id="jobs" style={{paddingTop: "125px"}}> Where I’ve Worked</h2>
+    <StyledJobsSection style={{ paddingBottom: "350px" }}>
+      <h2
+        className="numbered-heading"
+        id="jobs"
+        style={{ paddingTop: "125px" }}
+      >
+        {" "}
+        Where I’ve Worked
+      </h2>
 
       <div className="inner">
         <StyledTabList role="tablist" aria-label="Job tabs">
           {jobsData &&
             jobsData.map(({ node }, i) => {
-              const { company } = node.frontmatter;
+              const { company } = node.frontmatter
               return (
                 <StyledTabButton
                   key={i}
@@ -249,12 +256,13 @@ const Jobs = () => {
                   onClick={() => setActiveTabId(i)}
                   id={`tab-${i}`}
                   role="tab"
-                  tabIndex={activeTabId === i ? '0' : '-1'}
+                  tabIndex={activeTabId === i ? "0" : "-1"}
                   aria-selected={activeTabId === i ? true : false}
-                  aria-controls={`panel-${i}`}>
+                  aria-controls={`panel-${i}`}
+                >
                   <span>{company}</span>
                 </StyledTabButton>
-              );
+              )
             })}
           <StyledHighlight activeTabId={activeTabId} />
         </StyledTabList>
@@ -262,20 +270,27 @@ const Jobs = () => {
         <StyledTabPanels>
           {jobsData &&
             jobsData.map(({ node }, i) => {
-              const { frontmatter, html } = node;
-              const { title, url, company, range } = frontmatter;
+              const { frontmatter, html } = node
+              const { title, url, company, range } = frontmatter
 
               return (
-                <CSSTransition key={i} in={activeTabId === i} timeout={250} classNames="fade">
+                <CSSTransition
+                  key={i}
+                  in={activeTabId === i}
+                  timeout={250}
+                  classNames="fade"
+                >
                   <StyledTabPanel
                     id={`panel-${i}`}
                     role="tabpanel"
-                    tabIndex={activeTabId === i ? '0' : '-1'}
+                    tabIndex={activeTabId === i ? "0" : "-1"}
                     aria-labelledby={`tab-${i}`}
                     aria-hidden={activeTabId !== i}
-                    hidden={activeTabId !== i}>
+                    hidden={activeTabId !== i}
+                  >
                     <h3>
-                      <span>{title}</span><span className="at">&nbsp;@&nbsp;</span>
+                      <span>{title}</span>
+                      <span className="at">&nbsp;@&nbsp;</span>
                       <span className="company">
                         <a href={url} className="inline-link">
                           {company}
@@ -288,12 +303,12 @@ const Jobs = () => {
                     <div dangerouslySetInnerHTML={{ __html: html }} />
                   </StyledTabPanel>
                 </CSSTransition>
-              );
+              )
             })}
         </StyledTabPanels>
       </div>
     </StyledJobsSection>
-  );
-};
+  )
+}
 
-export default Jobs;
+export default Jobs

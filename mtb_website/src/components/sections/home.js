@@ -1,7 +1,7 @@
 import React from "react"
-import styled, {keyframes} from "styled-components"
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import FadeIn from 'react-fade-in';
+import styled, { keyframes } from "styled-components"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
+import FadeIn from "react-fade-in"
 
 const StyledHomeSection = styled.section`
     overflow: hidden;
@@ -59,42 +59,57 @@ const StyledHomeSection = styled.section`
   .special{
     color: var(--green);
   }
-`;
+`
 const Home = () => {
-  const one = <h1>Hi, my name is</h1>;
-  const two = <h2 className="big-heading">Allen Lu.</h2>;
-  const three = <h3 className="big-heading">I am a software developer.</h3>;
+  const one = <h1>Hi, my name is</h1>
+  const two = <h2 className="big-heading">Allen Lu.</h2>
+  const three = <h3 className="big-heading">I am a software developer.</h3>
   const four = (
     <>
       <p>
-        I am a third-year student majoring in 
-        <span className="special"> Computer Science</span> at 
-        <span className="special"> Carnegie Mellon University</span>
-        . Currently, I am currently a Software Engineer Intern at {''}
-        {''} <a href="https://zoom.us/" className="special" target="_blank" rel="noopener noreferrer"> Zoom </a> {''}
-        and am also working at the Carnegie  
-        {''} <a href="http://vdel.me.cmu.edu/" className="special" target="_blank" rel="noopener noreferrer"> Visual Design and Engineering Lab </a>. 
-    
+        I am a third-year student majoring in
+        <span className="special"> Computer Science</span> at
+        <span className="special"> Carnegie Mellon University</span>. Currently,
+        I am currently a Software Engineer Intern at {""}
+        {""}{" "}
+        <a
+          href="https://zoom.us/"
+          className="special"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {" "}
+          Zoom{" "}
+        </a>{" "}
+        {""}
+        and am also working at the Carnegie
+        {""}{" "}
+        <a
+          href="http://vdel.me.cmu.edu/"
+          className="special"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {" "}
+          Visual Design and Engineering Lab{" "}
+        </a>
+        .
       </p>
     </>
-  );
-  
+  )
 
-  const items = [one, two, three, four];
+  const items = [one, two, three, four]
 
   return (
     <StyledHomeSection id="home">
-      
-        <TransitionGroup component={null}>
-            <FadeIn transitionDuration="750" delay="250">
-                {items.map((item, i) => (
-                    
-                    <div>{item}</div>
-                    ))}
-            </FadeIn>
-        </TransitionGroup>
-      
+      <TransitionGroup component={null}>
+        <FadeIn transitionDuration="750" delay="250">
+          {items.map((item, i) => (
+            <div>{item}</div>
+          ))}
+        </FadeIn>
+      </TransitionGroup>
     </StyledHomeSection>
-  );
+  )
 }
 export default Home

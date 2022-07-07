@@ -11,10 +11,8 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import { Nav, Email, Social, Footer } from "../components"
 import "./layout.css"
-import styled, { ThemeProvider } from 'styled-components';
-import { GlobalStyle, theme } from '../styles';
-
-
+import styled, { ThemeProvider } from "styled-components"
+import { GlobalStyle, theme } from "../styles"
 
 const StyledContent = styled.div`
   display: flex;
@@ -41,20 +39,18 @@ const Layout = ({ children }) => {
     <>
       <StyledRoot id="root">
         <ThemeProvider theme={theme}>
-          <GlobalStyle/>
+          <GlobalStyle />
           <StyledContent>
-            <Nav/>
-            <Social/>
-            <Email/>
+            <Nav />
+            <Social />
+            <Email />
             <div>{children}</div>
-            <Footer/>
+            <Footer />
           </StyledContent>
         </ThemeProvider>
       </StyledRoot>
-      
     </>
   )
 }
-
 
 export default Layout

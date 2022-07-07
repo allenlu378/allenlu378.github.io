@@ -1,9 +1,9 @@
 import * as React from "react"
-import styled, {keyframes} from "styled-components"
-import FadeInDown from "@bit/formidablelabs.react-animations.fade-in-down";
-import {email} from "../config"
+import styled, { keyframes } from "styled-components"
+import FadeInDown from "@bit/formidablelabs.react-animations.fade-in-down"
+import { email } from "../config"
 import Sidebar from "./sidebar"
-import FadeIn from 'react-fade-in';
+import FadeIn from "react-fade-in"
 const StyledLinkWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -29,23 +29,20 @@ const StyledLinkWrapper = styled.div`
     font-size: var(--fz-xxs);
     letter-spacing: 0.1em;
     writing-mode: vertical-rl;
-    :hover{
-        color: var(--green);
+    :hover {
+      color: var(--green);
     }
-
   }
 `
 
 const Email = () => (
-
   <Sidebar orientation="right">
-    <FadeIn transitionDuration="500" delay="500" >
-        <StyledLinkWrapper>
+    <FadeIn transitionDuration="500" delay="500">
+      <StyledLinkWrapper>
         <a href={`mailto:${email}`}>{email}</a>
-        </StyledLinkWrapper>
+      </StyledLinkWrapper>
     </FadeIn>
-   </Sidebar>
-
+  </Sidebar>
 )
 
 export default Email
