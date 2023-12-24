@@ -67,7 +67,7 @@ const Home = () => {
   const four = (
     <>
       <p>
-        I am a third-year student majoring in
+        I am a fourth-year senior majoring in
         <span className="special"> Computer Science</span> at
         <span className="special"> Carnegie Mellon University</span>. Currently,
         I am currently a Software Engineer Intern at {""}
